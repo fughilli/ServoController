@@ -1,0 +1,7 @@
+*.map
+*.opt
+*.pp
+*.mk
+*.txt
+Debug/
+.launches/
