@@ -1,11 +1,7 @@
 /*
  * global_const.h
  *
- *  Created on: Feb 7, 2014
- *      Author: Kevin
- *
- *
- * Copyright (C) 2012-2014  Kevin Balke
+ * Copyright (C) 2012-2017  Kevin Balke
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,10 +22,9 @@
  *
  */
 
-#ifndef GLOBAL_CONST_H_
-#define GLOBAL_CONST_H_
+#ifndef GLOBAL_CONST_H
+#define GLOBAL_CONST_H
 
 #define CLOCK_SPEED_MHz 16
 
-
-#endif /* GLOBAL_CONST_H_ */
+#endif /* GLOBAL_CONST_H */
