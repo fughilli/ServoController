@@ -35,6 +35,8 @@
  */
 #define READ_NOADDR_FROM_START
 
+#define I2C_CHECKSUM_MAGIC (0xAA)
+
 typedef uint8_t slvaddr_t;
 
 bool i2c_busy();

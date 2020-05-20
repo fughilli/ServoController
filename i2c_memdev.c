@@ -66,6 +66,7 @@ static struct {
     bool have_address, read;
     bool busy;
     slvaddr_t addr;
+    uint8_t chksum;
     i2c_state_e state;
 } i2c_state;
 
@@ -127,10 +128,11 @@ static void i2c_reset()
 {
     USIDIR_IN();
 
-    i2c_state.idx = 0;
-    i2c_state.have_address = false;
+    //i2c_state.idx = 0;
+    //i2c_state.have_address = false;
     i2c_state.busy = false;
     i2c_state.state = I2CS_IDLE;
+    i2c_state.chksum = I2C_CHECKSUM_MAGIC;
 }
 
 /**
@@ -331,14 +333,15 @@ static void usi_int() {
                 i2c_indicate_activity();
 
                 USISRL = i2c_state.readmem[i2c_state.idx++];
+                i2c_state.chksum ^= USISRL;
             }
             else
             {
                 /*
-                 * The master just gets zeros if it asks for more data than we
-                 * have.
+                 * The master just gets the checksum if it asks for more data
+                 * than we have.
                  */
-                USISRL = 0;
+                USISRL = i2c_state.chksum;
             }
 
             USICOUNT(8);
