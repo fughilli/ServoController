@@ -1,13 +1,15 @@
 #!/bin/bash
 
+DEVICE=01:011
+
 program()
 {
-    sudo mspdebug rf2500 "prog main.elf"
+    sudo mspdebug rf2500 -U $DEVICE "prog main.elf"
 }
 
 debug()
 {
-    setsid sh -c "mspdebug rf2500 \"gdb\" 2>&1 1?/dev/null &"
+    setsid sh -c "mspdebug rf2500 -U $DEVICE \"gdb\" 2>&1 1>/dev/null &"
 
     msp430-gdb
 
